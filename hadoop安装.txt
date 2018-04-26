@@ -1,0 +1,42 @@
+1下载安装jdk 1.8  hadoop稳定版本
+    设置centosIP
+    /etc/sysconfig/network-script/ifcfg-exxx 
+	IPADDR=192.168.XX.XX
+	NETMASK=255.255.255.0
+	DNS1=选配
+	DNS2=选配
+    /etc/sysconfig/network
+	NETWORKING=yes
+	GATEWAY=宿主机ip
+     更改主机名  hostnamectl set-hostname xxxx
+     关闭机器的防火墙  systemctl stop firewalld  禁用防火墙 systemctl disable firewalld
+     修改hosts文件 使它们互相能通过机器名来认识对方 /etc/hosts
+
+2解压安装到/usr/local文件夹下
+-------------------------------------------------------------------------------------------
+HDFS的配置  
+    到hadoop的安装目录   /usr/local/hadoop/etc/hadoop  修改core-site.xml文件
+    <property>
+       <name>fs.defaultFS</name>
+       <value>hdfs://master:9000</value>
+    </property>
+    
+    首先格式化namenode  用命令  hdfs namenode -format
+    启动namenode或者datanode   hadoop-deamon.sh start namenode/datanode 
+
+    用jps查看进程启动情况
+-查看集群hdfs的情况   hdfs dfsadmin -report 
+ 用命令 netstat -ntlp 查看端口   
+  若web端口无法访问  关闭防火墙
+           修改 hdfs-site.xml  添加
+ 		<property>
+                  <name>dfs.http.address</name>
+                  <value>0.0.0.0:50070</value>
+                 </property>
+
+-----------------------------------------------------
+ssh 免密码登陆   cd ~/.ssh目录
+   生成ssh私钥和公钥  ssh-keygen -t rsa 
+   copy 公钥  ssh-copy-id xxxxxx
+   hadoop/etc/hadoop/start-dfs.sh
+------------------------------------------------------------------
