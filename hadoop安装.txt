@@ -38,5 +38,12 @@ HDFS的配置
 ssh 免密码登陆   cd ~/.ssh目录
    生成ssh私钥和公钥  ssh-keygen -t rsa 
    copy 公钥  ssh-copy-id xxxxxx 
+    修改slaves文件   开始批量管理功能
    hadoop/etc/hadoop/start-dfs.sh
 ------------------------------------------------------------------
+ 修改hadoop的存储路径   tmp路径
+    每一个节点都要修改core-site.xml文件 
+    <property>
+       <name>hadoop.tmp.dir</name>
+       <value>/var/hadoop</value>
+    </property>
