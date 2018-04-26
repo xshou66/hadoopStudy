@@ -37,6 +37,6 @@ HDFS的配置
 -----------------------------------------------------
 ssh 免密码登陆   cd ~/.ssh目录
    生成ssh私钥和公钥  ssh-keygen -t rsa 
-   copy 公钥  ssh-copy-id xxxxxx
+   copy 公钥  ssh-copy-id xxxxxx 
    hadoop/etc/hadoop/start-dfs.sh
 ------------------------------------------------------------------
