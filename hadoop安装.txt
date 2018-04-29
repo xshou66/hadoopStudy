@@ -47,3 +47,30 @@ ssh 免密码登陆   cd ~/.ssh目录
        <name>hadoop.tmp.dir</name>
        <value>/var/hadoop</value>
     </property>
+
+
+---------------------------------------------------------------------
+YARN配置  修改yarn-site.xml
+	增加 namenode上
+   <property>
+     <name>yarn.resourcemanager.hostname</name>
+     <value>master</value>
+   </property>
+ 
+   <property>  
+     <name>yarn.nodemanager.aux-services</name>  
+     <value>mapreduce_shuffle</value>  
+   </property>  
+ 
+   <property>
+     <name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+     <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+   </property>
+
+   MAPREDUCE  namenode
+     <property>
+	    <name>mapreduce.framework.name</name>
+	    <value>yarn</value>
+	</property>
+
+ 通过web访问yarn  主机名:8088端口
