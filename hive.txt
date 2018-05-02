@@ -1,0 +1,15 @@
+http://www.mashibing.com/hive.html
+
+1 修改hive配置文件  hive-default.xml.template ——————————>>   hive-site.xml
+  修改hive.metastore.schema.verification，设定为false
+
+  创建/usr/local/hive/tmp目录，替换${system:java.io.tmpdir}为该目录 
+  替换${system:user.name}为root
+  ------------------------------------------
+  schematool -initSchema -dbType derby  初始化元数据数据库
+
+  执行hive 
+
+  -----------------------------------------------
+  hive word count
+  建表：------------------------>>  create table(line string);
