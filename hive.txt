@@ -12,4 +12,7 @@ http://www.mashibing.com/hive.html
 
   -----------------------------------------------
   hive word count
-  建表：------------------------>>  create table(line string);
+  建表：------------------------>>  create table wordcount(line string);
+  加载数据 load data inpath '/test.data' overwrite into table wordcount;
+  处理数据  select explode(split(line,' ')) from wordcount;
+  做统计查询 select word,count(1) from (select explode(split(line,' ')) word from wordcount) w group by word;
