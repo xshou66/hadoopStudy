@@ -1,48 +1,54 @@
-1ÏÂÔØ°²×°jdk 1.8  hadoopÎÈ¶¨°æ±¾
-    ÉèÖÃcentosIP
+ï»¿1ä¸‹è½½å®‰è£…jdk 1.8  hadoopç¨³å®šç‰ˆæœ¬
+    è®¾ç½®centosIP
     /etc/sysconfig/network-script/ifcfg-exxx 
 	IPADDR=192.168.XX.XX
 	NETMASK=255.255.255.0
-	DNS1=Ñ¡Åä
-	DNS2=Ñ¡Åä
+	DNS1=é€‰é…
+	DNS2=é€‰é…
     /etc/sysconfig/network
 	NETWORKING=yes
-	GATEWAY=ËŞÖ÷»úip
-     ¸ü¸ÄÖ÷»úÃû  hostnamectl set-hostname xxxx
-     ¹Ø±Õ»úÆ÷µÄ·À»ğÇ½  systemctl stop firewalld  ½ûÓÃ·À»ğÇ½ systemctl disable firewalld
-     ĞŞ¸ÄhostsÎÄ¼ş Ê¹ËüÃÇ»¥ÏàÄÜÍ¨¹ı»úÆ÷ÃûÀ´ÈÏÊ¶¶Ô·½ /etc/hosts
+	GATEWAY=å®¿ä¸»æœºip
+     æ›´æ”¹ä¸»æœºå  hostnamectl set-hostname xxxx
+     å…³é—­æœºå™¨çš„é˜²ç«å¢™  systemctl stop firewalld  ç¦ç”¨é˜²ç«å¢™ systemctl disable firewalld
+     ä¿®æ”¹hostsæ–‡ä»¶ ä½¿å®ƒä»¬äº’ç›¸èƒ½é€šè¿‡æœºå™¨åæ¥è®¤è¯†å¯¹æ–¹ /etc/hosts
 
-2½âÑ¹°²×°µ½/usr/localÎÄ¼ş¼ĞÏÂ
+2è§£å‹å®‰è£…åˆ°/usr/localæ–‡ä»¶å¤¹ä¸‹
 -------------------------------------------------------------------------------------------
-HDFSµÄÅäÖÃ  
-    µ½hadoopµÄ°²×°Ä¿Â¼   /usr/local/hadoop/etc/hadoop  ĞŞ¸Äcore-site.xmlÎÄ¼ş
+HDFSçš„é…ç½®  
+    åˆ°hadoopçš„å®‰è£…ç›®å½•   /usr/local/hadoop/etc/hadoop  ä¿®æ”¹core-site.xmlæ–‡ä»¶
     <property>
        <name>fs.defaultFS</name>
        <value>hdfs://master:9000</value>
     </property>
     
-    Ê×ÏÈ¸ñÊ½»¯namenode  ÓÃÃüÁî  hdfs namenode -format
-    Æô¶¯namenode»òÕßdatanode   hadoop-deamon.sh start namenode/datanode 
+    é¦–å…ˆæ ¼å¼åŒ–namenode  ç”¨å‘½ä»¤  hdfs namenode -format
+    å¯åŠ¨namenodeæˆ–è€…datanode   hadoop-deamon.sh start namenode/datanode 
 
-    ÓÃjps²é¿´½ø³ÌÆô¶¯Çé¿ö
--²é¿´¼¯ÈºhdfsµÄÇé¿ö   hdfs dfsadmin -report 
- ÓÃÃüÁî netstat -ntlp ²é¿´¶Ë¿Ú   
-  Èôweb¶Ë¿ÚÎŞ·¨·ÃÎÊ  ¹Ø±Õ·À»ğÇ½
-           ĞŞ¸Ä hdfs-site.xml  Ìí¼Ó
+    ç”¨jpsæŸ¥çœ‹è¿›ç¨‹å¯åŠ¨æƒ…å†µ
+-æŸ¥çœ‹é›†ç¾¤hdfsçš„æƒ…å†µ   hdfs dfsadmin -report 
+ ç”¨å‘½ä»¤ netstat -ntlp æŸ¥çœ‹ç«¯å£   
+  è‹¥webç«¯å£æ— æ³•è®¿é—®  å…³é—­é˜²ç«å¢™
+           ä¿®æ”¹  hdfs-site.xml  æ·»åŠ 
  		<property>
                   <name>dfs.http.address</name>
                   <value>0.0.0.0:50070</value>
-                 </property>
+         </property>
+
+  è®¿é—®æƒé™è®¾ç½® hdfs-site.xml
+  	<property>
+                  <name>dfs.permissions.enabled</name>
+                  <value>false</value>
+         </property>
 
 -----------------------------------------------------
-ssh ÃâÃÜÂëµÇÂ½   cd ~/.sshÄ¿Â¼
-   Éú³ÉsshË½Ô¿ºÍ¹«Ô¿  ssh-keygen -t rsa 
-   copy ¹«Ô¿  ssh-copy-id xxxxxx 
-    ĞŞ¸ÄslavesÎÄ¼ş   ¿ªÊ¼ÅúÁ¿¹ÜÀí¹¦ÄÜ
+ssh å…å¯†ç ç™»é™†   cd ~/.sshç›®å½•
+   ç”Ÿæˆsshç§é’¥å’Œå…¬é’¥  ssh-keygen -t rsa 
+   copy å…¬é’¥  ssh-copy-id xxxxxx 
+    ä¿®æ”¹slavesæ–‡ä»¶   å¼€å§‹æ‰¹é‡ç®¡ç†åŠŸèƒ½
    hadoop/etc/hadoop/start-dfs.sh
 ------------------------------------------------------------------
- ĞŞ¸ÄhadoopµÄ´æ´¢Â·¾¶   tmpÂ·¾¶
-    Ã¿Ò»¸ö½Úµã¶¼ÒªĞŞ¸Äcore-site.xmlÎÄ¼ş 
+ ä¿®æ”¹hadoopçš„å­˜å‚¨è·¯å¾„   tmpè·¯å¾„
+    æ¯ä¸€ä¸ªèŠ‚ç‚¹éƒ½è¦ä¿®æ”¹core-site.xmlæ–‡ä»¶ 
     <property>
        <name>hadoop.tmp.dir</name>
        <value>/var/hadoop</value>
@@ -50,8 +56,8 @@ ssh ÃâÃÜÂëµÇÂ½   cd ~/.sshÄ¿Â¼
 
 
 ---------------------------------------------------------------------
-YARNÅäÖÃ  ĞŞ¸Äyarn-site.xml
-	Ôö¼Ó namenodeÉÏ
+YARNé…ç½®  ä¿®æ”¹yarn-site.xml
+	å¢åŠ  namenodeä¸Š
    <property>
      <name>yarn.resourcemanager.hostname</name>
      <value>master</value>
@@ -73,4 +79,8 @@ YARNÅäÖÃ  ĞŞ¸Äyarn-site.xml
 	    <value>yarn</value>
 	</property>
 
- Í¨¹ıweb·ÃÎÊyarn  Ö÷»úÃû:8088¶Ë¿Ú
+ é€šè¿‡webè®¿é—®yarn  ä¸»æœºå:8088ç«¯å£
+
+ -----------------------------------------------------
+ è¿œç¨‹è¿è¡Œmapreduceç¨‹åº  run configration  -VM args  -DHADOOP_USER_NAME=root
+
